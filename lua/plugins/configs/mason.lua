@@ -18,6 +18,13 @@ return {
 					"clangd",
 					-- Python language server
 					"basedpyright",
+					-- Java language server
+					"jdtls"
+				},
+				automatic_enable = {
+					exclude = {
+						"jdtls"
+					}
 				}
 			})
 		end

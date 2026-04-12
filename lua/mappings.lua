@@ -34,7 +34,7 @@ wk.add({
 	{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc="[TELESCOPE] Find File" },
 	{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc="[TELESCOPE] Find File by live grep (search content)" },
 	{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc="[TELESCOPE] Find buffers" },
-	
+
 	-- Splits
 	{ "<leader>s", group = "Splits" },
     { "<leader>sh", "<cmd>split<cr>", desc = "[SPLIT] Horizontal split"},
@@ -56,9 +56,9 @@ wk.add({
 
     -- Errors and diagnostics
 	{ "<leader>e", group = "[Errors and diagnostics]" },
-    { "<leader>ee", "<cmd>lua vim.diagnostic.open_float()<cr>", desc = "[DIAG] Show error in line"},
-	{ "<leader>en", "<cmd>lua vim.diagnostic.goto_next()<cr>", desc = "[DIAG] Go to next error" },
-	{ "<leader>ep", "<cmd>lua vim.diagnostic.goto_prev()<cr>", desc = "[DIAG] Go to previous error" },
+    { "<leader>ee", function() vim.diagnostic.open_float() end, desc = "[DIAG] Show error in line"},
+	{ "<leader>en", function() vim.diagnostic.jump({ count = 1 }) end, desc = "[diag] go to next error" },
+	{ "<leader>ep", function() vim.diagnostic.jump({ count = -1 }) end, desc = "[diag] go to previous error" },
 })
 
 -- INSERT mode mappings --
