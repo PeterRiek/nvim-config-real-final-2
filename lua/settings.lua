@@ -12,6 +12,7 @@ local options = {
 
 	number = true, -- Make line numbers default
 	scrolloff = 3, -- keep 3 lines at bottom on scrolling
+	cursorline = true,
 
 	foldenable = false,
 	foldexpr = "nvim_treesitter#foldexpr()",

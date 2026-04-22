@@ -65,6 +65,10 @@ return {
 					show_labelDetails = true, -- show labelDetails in menu. Disabled by default
 				}),
 			},
+			-- limit to max 20 entries
+			performance = {
+				max_view_entries = 20,
+			}
 		})
 	end,
 }

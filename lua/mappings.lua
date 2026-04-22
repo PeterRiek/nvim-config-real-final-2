@@ -66,7 +66,7 @@ wk.add({
 	{ "<leader>bn", "<cmd>bn<cr>", desc = "[BUFFER] Go next buffer" },
 	{ "<leader>bp", "<cmd>bp<cr>", desc = "[BUFFER] Go previous buffer" },
 	{ "<leader>bt", "<cmd>ene<cr>", desc = "[BUFFER] Open a new empty buffer" },
-	{ "<leader>bx", "<cmd>bdelete!<cr>", desc = "[BUFFER] Close current buffer" },
+	{ "<leader>bx", function() require("snacks").bufdelete() end, desc = "[BUFFER] Close current buffer" },
 	{ "<leader>bX", "<cmd>%bd!|e#|bd#<cr>", desc = "[BUFFER] Close all other buffers" },
 	{ "<leader>by", "<cmd>%y+<cr>", desc = "[BUFFER] Yank whole buffer to clipboard" },
 

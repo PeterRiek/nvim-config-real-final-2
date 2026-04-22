@@ -48,6 +48,7 @@ local plugins = {
 	require("plugins.configs.maximizer"),				-- Toggle split max/min
 	require("plugins.configs.autopairs"),				-- autoclose brackets, parentheses...
 	require("plugins.configs.remote"),					-- Remote development support
+	"folke/snacks.nvim",
 
 
 	-- LSP/DAP
