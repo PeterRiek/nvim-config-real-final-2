@@ -13,7 +13,6 @@ return {
 		if status and secrets.gemini_api_key then
 			vim.env.GEMINI_API_KEY = secrets.gemini_api_key
 		end
-
 		require('codecompanion').setup {
 			display = {
 				chat = {
@@ -23,27 +22,42 @@ return {
 					}
 				}
 			},
+			adapters = {
+				gemini = require('codecompanion.adapters').extend('gemini', {
+					schema = {
+						model = {
+							default = 'gemini-2.5-flash',
+						},
+					},
+				}),
+				http = {
+					ollama = function ()
+						return require('codecompanion.adapters').extend('ollama', {
+							env = {
+								url = 'http://100.111.209.1:11434',
+							},
+							schema = {
+								model = { default = 'qwen2.5-coder:3b' },
+								num_ctx = { default = 8000 },
+							},
+						})
+					end
+				}
+			},
 			strategies = {
 				chat = {
-					adapter = {
-						name = 'gemini',
-						model = 'gemini-2.5-flash'
-					},
+					adapter = 'ollama',
 				},
 				inline = {
-					adapter = {
-						name = 'gemini',
-						model = 'gemini-2.5-flash'
-					},
+					adapter = 'ollama',
 				},
-			},
+			}
 		}
-		
+
 		-- Fidget status of prompt progress
 		local progress = require("fidget.progress")
 		local handles = {}
 		local group = vim.api.nvim_create_augroup("CodeCompanionFidget", {})
-
 		vim.api.nvim_create_autocmd("User", {
 			pattern = "CodeCompanionRequestStarted",
 			group = group,
@@ -55,7 +69,6 @@ return {
 				})
 			end
 		})
-
 		vim.api.nvim_create_autocmd("User", {
 			pattern = "CodeCompanionRequestFinished",
 			group = group,

@@ -33,5 +33,23 @@ vim.lsp.config("clangd", {
 vim.lsp.enable("clangd")
 
 -- Python setup
-vim.lsp.config("basedpyright", {})
+vim.lsp.config('ruff', {
+  cmd = { 'ruff', 'server' },
+  filetypes = { 'python' },
+  on_attach = function(client, _)
+    client.server_capabilities.hoverProvider = false
+  end,
+})
+vim.lsp.enable('ruff')
+
+vim.lsp.config("basedpyright", {
+	settings = {
+		basedpyright = {
+			analysis = {
+				typeCheckingMode = "basic",
+				ignore = { "*" }
+			}
+		}
+	}
+})
 vim.lsp.enable("basedpyright")

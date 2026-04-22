@@ -40,6 +40,7 @@ local plugins = {
 	require("plugins.configs.ufo"),						-- enhanced fold management
 	require("plugins.configs.neoscroll"),				-- better scrolling
 	require("plugins.configs.noice"),					-- popups and commandline centered popup
+	"stevearc/dressing.nvim",							-- cleaner popup interaction
 	require("plugins.configs.indentblankline"),		-- Indent blankline for visual indentation guides
 
 
@@ -65,6 +66,8 @@ local plugins = {
 	-- AI & vibecode
 	require("plugins.configs.codecompanion"),			-- moving tmux panes <-> nvim splits
 
+	-- Fun
+	'ThePrimeagen/vim-be-good',
 }
 
 lazy.setup(plugins)

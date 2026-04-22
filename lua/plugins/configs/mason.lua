@@ -18,6 +18,7 @@ return {
 					"clangd",
 					-- Python language server
 					"basedpyright",
+					"ruff",
 					-- Java language server
 					"jdtls"
 				},

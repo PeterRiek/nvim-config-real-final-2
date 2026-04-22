@@ -9,17 +9,27 @@ if not ok then
 	return
 end
 
+
 -- MULTIPLE MODES MAPPINGS
 wk.add({
     mode = {"n","v","o" },
 	{ "H", "^", desc = "[MOTION] Move to first character of line" },
 	{ "L", "$", desc = "[MOTION] Move to last character of line" },
 	{ "<leader>nd", "<cmd>Noice dismiss<cr>", desc = "[NOICE] Dismiss all messages"},
-
+	{ "<leader>Q", "<cmd>qa!<cr>", desc = "Force quit all" },
 	-- Code Companion & AI assistants
 	{ "<leader>c", group = "[Code Companion & AI assistants]"},
 	{ "<leader>cc", "<cmd>CodeCompanionChat Toggle<cr>", desc = "[COMPANION] Open CodeCompanion Chat" },
 	{ "<leader>ci", "<cmd>CodeCompanion<cr>", desc = "[COMPANION] Open CodeCompanion Inline" },
+	{ "<leader>ca", "<cmd>CodeCompanionActions<cr>", desc = "[COMPANION] Open CodeCompanion Actions" },
+
+	-- Code Actions
+	{ "<leader>a", group = "Actions (LSP)" },
+	{ "<leader>aa", vim.lsp.buf.code_action, desc = "[LSP] Code actions" },
+	{ "<leader>ar", vim.lsp.buf.rename, desc = "[LSP] Rename symbol" },
+	{ "<leader>af", function() vim.lsp.buf.format({ async = true }) end, desc = "[LSP] Format file" },
+
+
 })
 
 -- NORMAL mode mappings --
@@ -41,6 +51,11 @@ wk.add({
     { "<leader>sv", "<cmd>vsplit<cr>", desc = "[SPLIT] Vertical split"},
     { "<leader>sm", "<cmd>MaximizerToggle<CR>", desc = "Maximize/minimize current split"},
     { "<leader>sx", "<cmd>close<cr>", desc = "[SPLIT] Close current split"},
+	-- Resize splits
+	{ "<a-c-h>", "<cmd>vertical resize -2<cr>", desc = "[SPLIT] Resize left" },
+	{ "<a-c-j>", "<cmd>resize -2<cr>", desc = "[SPLIT] Resize down" },
+	{ "<a-c-k>", "<cmd>resize +2<cr>", desc = "[SPLIT] Resize up" },
+	{ "<a-c-l>", "<cmd>vertical resize +2<cr>", desc = "[SPLIT] Resize right" },
 
 	-- Views
 	{ "<leader>v", group = "Views" },
@@ -53,6 +68,7 @@ wk.add({
 	{ "<leader>bt", "<cmd>ene<cr>", desc = "[BUFFER] Open a new empty buffer" },
 	{ "<leader>bx", "<cmd>bdelete!<cr>", desc = "[BUFFER] Close current buffer" },
 	{ "<leader>bX", "<cmd>%bd!|e#|bd#<cr>", desc = "[BUFFER] Close all other buffers" },
+	{ "<leader>by", "<cmd>%y+<cr>", desc = "[BUFFER] Yank whole buffer to clipboard" },
 
     -- Errors and diagnostics
 	{ "<leader>e", group = "[Errors and diagnostics]" },
@@ -89,7 +105,8 @@ wk.add({
 -- TERMINAL mode mappings --
 wk.add({
     mode = { "t" },
-	{ "jk", "<ESC>", desc = "Normal mode switch" },
+	{ "<ESC>", "<C-\\><C-n>", desc = "Normal mode switch" },
+	{ "jk", "<C-\\><C-n>", desc = "Normal mode switch" },
     { "<c-h>", "<cmd>wincmd h<cr>,", desc = "[TERMINAL] Move left" },
     { "<c-j>", "<cmd>wincmd j<cr>,", desc = "[TERMINAL] Move down" },
     { "<c-k>", "<cmd>wincmd k<cr>,", desc = "[TERMINAL] Move up" },
