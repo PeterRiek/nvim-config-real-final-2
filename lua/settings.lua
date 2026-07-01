@@ -1,32 +1,32 @@
 local options = {
-	shiftwidth = 4,
-	tabstop = 4,
+  shiftwidth = 4,
+  tabstop = 4,
 
-	clipboard = "unnamed,unnamedplus", -- Use system clipboard
+  clipboard = "unnamed,unnamedplus",             -- Use system clipboard
 
-	ignorecase = true, -- Case insensitive search UNLESS /C or capital in search
+  ignorecase = true,                             -- Case insensitive search UNLESS /C or capital in search
 
-	undodir = os.getenv("HOME") .. "/.vim/undidir", -- store undos in ~/.vim/undidir/
-	undofile = true, -- save undo history
+  undodir = os.getenv("HOME") .. "/.vim/undidir", -- store undos in ~/.vim/undidir/
+  undofile = true,                               -- save undo history
 
-	number = true, -- Make line numbers default
-	relativenumber = true,
-	signcolumn = "number",
-	scrolloff = 3, -- keep 3 lines at bottom on scrolling
-	cursorline = true,
+  number = true,                                 -- Make line numbers default
+  relativenumber = true,
+  signcolumn = "number",
+  scrolloff = 3, -- keep 3 lines at bottom on scrolling
+  cursorline = true,
 
-	foldenable = false,
-	foldexpr = "nvim_treesitter#foldexpr()",
-	foldlevel = 99,
-	foldlevelstart = 99,
-	foldmethod = "expr",
+  foldenable = false,
+  foldexpr = "nvim_treesitter#foldexpr()",
+  foldlevel = 99,
+  foldlevelstart = 99,
+  foldmethod = "expr",
 
-	splitright = true,
-	splitbelow = true,
+  splitright = true,
+  splitbelow = true,
 }
 
 for key, value in pairs(options) do
-	vim.opt[key] = value
+  vim.opt[key] = value
 end
 
 -- UI theme

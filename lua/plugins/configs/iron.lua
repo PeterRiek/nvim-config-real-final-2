@@ -12,12 +12,12 @@ return {
         -- Your repl definitions come here
         repl_definition = {
           sh = {
-            command = {"bash"}
+            command = { "bash" }
           },
           python = {
-            command = {"ipython"},
+            command = { "ipython" },
             format = common.bracketed_paste_python,
-            block_dividers = {"# %%", "#%%"},
+            block_dividers = { "# %%", "#%%" },
             env = { PYTHON_BASIC_BASIC_REPL = "1" }
           }
         },
