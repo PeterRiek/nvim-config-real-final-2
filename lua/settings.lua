@@ -30,4 +30,4 @@ for key, value in pairs(options) do
 end
 
 -- UI theme
-require("theme").set_active_theme("gruvbox")
+require("theme").set_active_theme("onedarkpro")

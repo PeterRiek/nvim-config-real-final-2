@@ -41,7 +41,7 @@ local plugins = {
 	require("plugins.configs.neoscroll"),				-- better scrolling
 	require("plugins.configs.noice"),					-- popups and commandline centered popup
 	require("plugins.configs.indentblankline"),			-- Indent blankline for visual indentation guides
-	require("plugins.configs.iron"),					-- Interactive Repls
+	-- require("plugins.configs.iron"),					-- Interactive Repls
 	"stevearc/dressing.nvim",							-- cleaner popup interaction
 	"folke/snacks.nvim",
 
@@ -66,7 +66,8 @@ local plugins = {
 	require("plugins.configs.tmux"),					-- moving tmux panes <-> nvim splits
 
 	-- AI & vibecode
-	require("plugins.configs.codecompanion"),			-- moving tmux panes <-> nvim splits
+	require("plugins.configs.codecompanion"),			-- ai chat companion
+	require("plugins.configs.copilot"),					-- ms copilot integration
 
 	-- Fun
 	'ThePrimeagen/vim-be-good',

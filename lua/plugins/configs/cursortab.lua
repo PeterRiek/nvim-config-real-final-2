@@ -14,6 +14,7 @@ return {
 			vim.env.GEMINI_API_KEY = secrets.gemini_api_key
 			vim.env.NVIDIA_API_KEY = secrets.nvidia_api_key
 		end
+
 		require('codecompanion').setup {
 			display = {
 				chat = {
@@ -24,6 +25,7 @@ return {
 				}
 			},
 			adapters = {
+				-- Gemini standard setup
 				gemini = require('codecompanion.adapters').extend('gemini', {
 					schema = {
 						model = {
@@ -31,19 +33,21 @@ return {
 						},
 					},
 				}),
-				http = {
-					nvidia = require('codecompanion.adapters').extend("openai", {
+				
+				-- Correct Nvidia setup via a custom adapter function extension
+				nvidia = function()
+					return require('codecompanion.adapters').extend('openai', {
 						url = "https://integrate.api.nvidia.com/v1/chat/completions",
 						env = {
-							api_key = "NVIDIA_API_KEY",
+							api_key = "NVIDIA_API_KEY", -- Looks up vim.env.NVIDIA_API_KEY
 						},
 						schema = {
 							model = {
-								default = "meta/llama-3.3-70b-instruct",
+								default = "microsoft/phi-4-mini-instruct",
 							},
 						}
 					})
-				}
+				end,
 			},
 			strategies = {
 				chat = {
@@ -83,3 +87,4 @@ return {
 		})
 	end,
 }
+
