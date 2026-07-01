@@ -20,7 +20,7 @@ wk.add({
   -- Code Companion & AI assistants
   { "<leader>c",  group = "[Code Companion & AI assistants]" },
   { "<leader>cc", "<cmd>CodeCompanionChat Toggle<cr>",                 desc = "[COMPANION] Open CodeCompanion Chat" },
-  { "<leader>ci", "<cmd>CodeCompanion<cr>",                            desc = "[COMPANION] Open CodeCompanion Inline" },
+  { "<leader>ci", ":CodeCompanion ",                                   desc = "[COMPANION] Open CodeCompanion Inline" },
   { "<leader>ca", "<cmd>CodeCompanionActions<cr>",                     desc = "[COMPANION] Open CodeCompanion Actions" },
 
   -- Code Actions

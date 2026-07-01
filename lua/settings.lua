@@ -2,14 +2,14 @@ local options = {
   shiftwidth = 4,
   tabstop = 4,
 
-  clipboard = "unnamed,unnamedplus",             -- Use system clipboard
+  clipboard = "unnamed,unnamedplus",              -- Use system clipboard
 
-  ignorecase = true,                             -- Case insensitive search UNLESS /C or capital in search
+  ignorecase = true,                              -- Case insensitive search UNLESS /C or capital in search
 
   undodir = os.getenv("HOME") .. "/.vim/undidir", -- store undos in ~/.vim/undidir/
-  undofile = true,                               -- save undo history
+  undofile = true,                                -- save undo history
 
-  number = true,                                 -- Make line numbers default
+  number = true,                                  -- Make line numbers default
   relativenumber = true,
   signcolumn = "number",
   scrolloff = 3, -- keep 3 lines at bottom on scrolling
@@ -24,6 +24,9 @@ local options = {
   splitright = true,
   splitbelow = true,
 }
+
+-- temporary disable deprecation warnings
+vim.deprecate = function() end
 
 for key, value in pairs(options) do
   vim.opt[key] = value

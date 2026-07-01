@@ -24,15 +24,33 @@ return {
         }
       },
       adapters = {
-        gemini = require('codecompanion.adapters').extend('gemini', {
-          schema = {
-            model = {
-              default = 'gemini-2.5-flash',
-            },
-          },
-        }),
         http = {
-          nvidia = require('codecompanion.adapters').extend("openai", {
+          opts = {
+            show_presets = false,
+          },
+          gemini = require('codecompanion.adapters').extend('gemini', {
+            schema = {
+              model = {
+                default = 'gemini-2.5-flash',
+              },
+            },
+          }),
+          copilot_claude = require('codecompanion.adapters').extend('copilot', {
+            schema = {
+              model = { default = 'claude-sonnet-4.5' },
+            },
+          }),
+          copilot_gpt = require('codecompanion.adapters').extend('copilot', {
+            schema = {
+              model = { default = 'gpt-4.1' },
+            },
+          }),
+          copilot_gemini = require('codecompanion.adapters').extend('copilot', {
+            schema = {
+              model = { default = 'gemini-2.5-pro' },
+            },
+          }),
+          nvidia_llama_70b = require('codecompanion.adapters').extend("openai", {
             url = "https://integrate.api.nvidia.com/v1/chat/completions",
             env = {
               api_key = "NVIDIA_API_KEY",
@@ -42,15 +60,31 @@ return {
                 default = "meta/llama-3.3-70b-instruct",
               },
             }
-          })
+          }),
+          nvidia_llama_3b = require('codecompanion.adapters').extend("openai", {
+            url = "https://integrate.api.nvidia.com/v1/chat/completions",
+            env = {
+              api_key = "NVIDIA_API_KEY",
+            },
+            schema = {
+              model = {
+                default = "meta/llama-3.2-3b-instruct",
+              },
+            }
+          }),
+        },
+        acp = {
+          opts = {
+            show_presets = false,
+          }
         }
       },
       strategies = {
         chat = {
-          adapter = 'nvidia',
+          adapter = 'nvidia_llama_70b',
         },
         inline = {
-          adapter = 'nvidia',
+          adapter = 'nvidia_llama_70b',
         },
       }
     }
