@@ -4,13 +4,14 @@ local options = {
 
 	clipboard = "unnamed,unnamedplus", -- Use system clipboard
 
-	signcolumn = "yes", -- 
 	ignorecase = true, -- Case insensitive search UNLESS /C or capital in search
 
 	undodir = os.getenv("HOME") .. "/.vim/undidir", -- store undos in ~/.vim/undidir/
 	undofile = true, -- save undo history
 
 	number = true, -- Make line numbers default
+	relativenumber = true,
+	signcolumn = "number",
 	scrolloff = 3, -- keep 3 lines at bottom on scrolling
 	cursorline = true,
 
@@ -20,6 +21,8 @@ local options = {
 	foldlevelstart = 99,
 	foldmethod = "expr",
 
+	splitright = true,
+	splitbelow = true,
 }
 
 for key, value in pairs(options) do

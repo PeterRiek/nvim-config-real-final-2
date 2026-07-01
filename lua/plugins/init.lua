@@ -40,15 +40,16 @@ local plugins = {
 	require("plugins.configs.ufo"),						-- enhanced fold management
 	require("plugins.configs.neoscroll"),				-- better scrolling
 	require("plugins.configs.noice"),					-- popups and commandline centered popup
+	require("plugins.configs.indentblankline"),			-- Indent blankline for visual indentation guides
+	require("plugins.configs.iron"),					-- Interactive Repls
 	"stevearc/dressing.nvim",							-- cleaner popup interaction
-	require("plugins.configs.indentblankline"),		-- Indent blankline for visual indentation guides
+	"folke/snacks.nvim",
 
 
 	-- Utilities
 	require("plugins.configs.maximizer"),				-- Toggle split max/min
 	require("plugins.configs.autopairs"),				-- autoclose brackets, parentheses...
 	require("plugins.configs.remote"),					-- Remote development support
-	"folke/snacks.nvim",
 
 
 	-- LSP/DAP

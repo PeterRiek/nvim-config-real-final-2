@@ -28,8 +28,6 @@ wk.add({
 	{ "<leader>aa", vim.lsp.buf.code_action, desc = "[LSP] Code actions" },
 	{ "<leader>ar", vim.lsp.buf.rename, desc = "[LSP] Rename symbol" },
 	{ "<leader>af", function() vim.lsp.buf.format({ async = true }) end, desc = "[LSP] Format file" },
-
-
 })
 
 -- NORMAL mode mappings --
@@ -73,8 +71,10 @@ wk.add({
     -- Errors and diagnostics
 	{ "<leader>e", group = "[Errors and diagnostics]" },
     { "<leader>ee", function() vim.diagnostic.open_float() end, desc = "[DIAG] Show error in line"},
-	{ "<leader>en", function() vim.diagnostic.jump({ count = 1 }) end, desc = "[diag] go to next error" },
-	{ "<leader>ep", function() vim.diagnostic.jump({ count = -1 }) end, desc = "[diag] go to previous error" },
+	{ "<leader>en", function() vim.diagnostic.jump({ count = 1 }) end, desc = "[diag] go to next diagnostic" },
+	{ "<leader>ep", function() vim.diagnostic.jump({ count = -1 }) end, desc = "[diag] go to previous diagnostic" },
+	{ "<leader>eN", function() vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR }) end, desc = "[DIAG] Go to next error" },
+	{ "<leader>eP", function() vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR }) end, desc = "[DIAG] Go to previous error" },
 })
 
 -- INSERT mode mappings --

@@ -12,6 +12,7 @@ return {
 		local status, secrets = pcall(require, 'secrets')
 		if status and secrets.gemini_api_key then
 			vim.env.GEMINI_API_KEY = secrets.gemini_api_key
+			vim.env.NVIDIA_API_KEY = secrets.nvidia_api_key
 		end
 		require('codecompanion').setup {
 			display = {
@@ -31,25 +32,25 @@ return {
 					},
 				}),
 				http = {
-					ollama = function ()
-						return require('codecompanion.adapters').extend('ollama', {
-							env = {
-								url = 'http://100.111.209.1:11434',
+					nvidia = require('codecompanion.adapters').extend("openai", {
+						url = "https://integrate.api.nvidia.com/v1/chat/completions",
+						env = {
+							api_key = "NVIDIA_API_KEY",
+						},
+						schema = {
+							model = {
+								default = "microsoft/phi-4-mini-instruct",
 							},
-							schema = {
-								model = { default = 'qwen2.5-coder:3b' },
-								num_ctx = { default = 8000 },
-							},
-						})
-					end
+						}
+					})
 				}
 			},
 			strategies = {
 				chat = {
-					adapter = 'ollama',
+					adapter = 'nvidia',
 				},
 				inline = {
-					adapter = 'ollama',
+					adapter = 'nvidia',
 				},
 			}
 		}
