@@ -30,32 +30,33 @@ local theme = require("theme")
 
 local plugins = {
   -- UI
-  theme.get_active_theme(),                  -- Active theme configuration
-  "folke/which-key.nvim",                    -- Which-Key shows key usage
-  require("plugins.configs.treesitter"),     -- Treesitter parsing system
-  require("plugins.configs.neotree"),        -- neo-tree file explorer
-  require("plugins.configs.telescope"),      -- telescope fuzzyfinder
-  require("plugins.configs.bufferline"),     -- bufferline tabpage
-  require("plugins.configs.lualine"),        -- statusline
-  require("plugins.configs.ufo"),            -- enhanced fold management
-  require("plugins.configs.neoscroll"),      -- better scrolling
-  require("plugins.configs.noice"),          -- popups and commandline centered popup
+  theme.get_active_theme(),                   -- Active theme configuration
+  "folke/which-key.nvim",                     -- Which-Key shows key usage
+  require("plugins.configs.treesitter"),      -- Treesitter parsing system
+  require("plugins.configs.neotree"),         -- neo-tree file explorer
+  require("plugins.configs.telescope"),       -- telescope fuzzyfinder
+  require("plugins.configs.bufferline"),      -- bufferline tabpage
+  require("plugins.configs.lualine"),         -- statusline
+  require("plugins.configs.ufo"),             -- enhanced fold management
+  require("plugins.configs.neoscroll"),       -- better scrolling
+  require("plugins.configs.noice"),           -- popups and commandline centered popup
   require("plugins.configs.indentblankline"), -- Indent blankline for visual indentation guides
   -- require("plugins.configs.iron"),					-- Interactive Repls
-  "stevearc/dressing.nvim",                  -- cleaner popup interaction
-  "folke/snacks.nvim",
+  "stevearc/dressing.nvim",                   -- cleaner popup interaction
+  "folke/snacks.nvim",                        -- better popup interaction
 
 
   -- Utilities
   require("plugins.configs.maximizer"), -- Toggle split max/min
   require("plugins.configs.autopairs"), -- autoclose brackets, parentheses...
-  require("plugins.configs.remote"),   -- Remote development support
+  require("plugins.configs.remote"),    -- Remote development support
+  require("plugins.configs.gitsigns"),  -- git integration
 
 
   -- LSP/DAP
-  "neovim/nvim-lspconfig",         -- collection of lsp server configs
+  "neovim/nvim-lspconfig",          -- collection of lsp server configs
   require("plugins.configs.mason"), -- Package manager for LSP/DAP
-  require("lsp.configs.java"),     -- Java language support
+  require("lsp.configs.java"),      -- Java language support
 
 
   -- Snippets
@@ -67,7 +68,7 @@ local plugins = {
 
   -- AI & vibecode
   require("plugins.configs.codecompanion"), -- ai chat companion
-  require("plugins.configs.copilot"),      -- ms copilot integration
+  require("plugins.configs.copilot"),       -- ms copilot integration
 
   -- Fun
   'ThePrimeagen/vim-be-good',
