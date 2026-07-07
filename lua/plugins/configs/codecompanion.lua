@@ -14,7 +14,7 @@ return {
       vim.env.GEMINI_API_KEY = secrets.gemini_api_key
       vim.env.NVIDIA_API_KEY = secrets.nvidia_api_key
     end
-    require('codecompanion').setup {
+    require('codecompanion').setup({
       display = {
         chat = {
           window = {
@@ -81,13 +81,13 @@ return {
       },
       strategies = {
         chat = {
-          adapter = 'nvidia_llama_70b',
+          adapter = 'copilot_gpt',
         },
         inline = {
-          adapter = 'nvidia_llama_70b',
+          adapter = 'copilot_gpt',
         },
       }
-    }
+    })
 
     -- Fidget status of prompt progress
     local progress = require("fidget.progress")

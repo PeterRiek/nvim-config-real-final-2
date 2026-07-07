@@ -2,17 +2,18 @@ local options = {
   shiftwidth = 4,
   tabstop = 4,
 
-  clipboard = "unnamed,unnamedplus",              -- Use system clipboard
+  clipboard = "unnamed,unnamedplus",                 -- Use system clipboard
 
-  ignorecase = true,                              -- Case insensitive search UNLESS /C or capital in search
+  ignorecase = true,                                 -- Case insensitive search UNLESS /C or capital in search
 
-  undodir = os.getenv("HOME") .. "/.vim/undidir", -- store undos in ~/.vim/undidir/
-  undofile = true,                                -- save undo history
+  undodir = os.getenv("HOME") .. "/.vim/undidir",    -- store undos in ~/.vim/undidir/
+  undofile = true,                                   -- save undo history
 
-  number = true,                                  -- Make line numbers default
-  relativenumber = true,
-  signcolumn = "number",
-  scrolloff = 3, -- keep 3 lines at bottom on scrolling
+  number = true,                                     -- Make line numbers default
+  relativenumber = true,                             -- Make relative line numbers default
+  signcolumn = "yes",                                -- Always show the sign column, otherwise it would shift the text each time
+  statuscolumn = "%s%=%{v:relnum?v:relnum:v:lnum} ", -- Show relative line numbers in the status column
+  scrolloff = 3,                                     -- keep 3 lines at bottom on scrolling
   cursorline = true,
 
   foldenable = false,
@@ -33,4 +34,4 @@ for key, value in pairs(options) do
 end
 
 -- UI theme
-require("theme").set_active_theme("onedarkpro")
+require("theme").set_active_theme("moonfly")
