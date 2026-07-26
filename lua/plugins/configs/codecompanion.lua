@@ -81,10 +81,10 @@ return {
       },
       strategies = {
         chat = {
-          adapter = 'copilot_gpt',
+          adapter = 'nvidia_llama_70b',
         },
         inline = {
-          adapter = 'copilot_gpt',
+          adapter = 'nvidia_llama_70b',
         },
       }
     })

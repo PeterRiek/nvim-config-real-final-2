@@ -86,7 +86,9 @@ wk.add({
   -- Buffers
   { "<leader>b",  group = "Buffers" },
   { "<leader>bn", "<cmd>bn<cr>",                                                                                desc = "[BUFFER] Go next buffer" },
+  { "<a-L>",      "<cmd>bn<cr>",                                                                                desc = "[BUFFER] Go next buffer" },
   { "<leader>bp", "<cmd>bp<cr>",                                                                                desc = "[BUFFER] Go previous buffer" },
+  { "<a-H>",      "<cmd>bp<cr>",                                                                                desc = "[BUFFER] Go previous buffer" },
   { "<leader>bt", "<cmd>ene<cr>",                                                                               desc = "[BUFFER] Open a new empty buffer" },
   { "<leader>bx", function() require("snacks").bufdelete() end,                                                 desc = "[BUFFER] Close current buffer" },
   { "<leader>bX", "<cmd>%bd!|e#|bd#<cr>",                                                                       desc = "[BUFFER] Close all other buffers" },

@@ -34,4 +34,4 @@ for key, value in pairs(options) do
 end
 
 -- UI theme
-require("theme").set_active_theme("moonfly")
+require("theme").set_active_theme("gruvbox")
