@@ -20,7 +20,9 @@ return {
           "basedpyright",
           "ruff",
           -- Java language server
-          "jdtls"
+          "jdtls",
+          -- Typescript Javascript
+          "ts_ls",
         },
         automatic_enable = {
           exclude = {

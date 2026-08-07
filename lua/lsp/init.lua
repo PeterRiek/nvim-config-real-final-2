@@ -78,11 +78,9 @@ vim.lsp.config("basedpyright", {
 })
 vim.lsp.enable("basedpyright")
 
-vim.diagnostic.config({
-	-- Fehler haben Vorrang vor Warnungen in der Signcolumn und bei Virtual Text
-	severity_sort = true,
+vim.lsp.enable("ls_ts")
 
-	-- (Optional) Falls du möchtest, dass Fehler auch im Insert-Mode direkt
-	-- aktualisiert werden, statt erst beim Verlassen des Modus
-	update_in_insert = false,
+vim.diagnostic.config({
+	severity_sort = true,
+  update_in_insert = false,
 })
