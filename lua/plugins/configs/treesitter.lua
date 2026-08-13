@@ -10,8 +10,10 @@ return {
       auto_install = true,
       ensure_installed = {
         "c",
+        "cpp",
         "python",
         "lua",
+        "vue",
       },
       ignore_install = {},
       modules = {},

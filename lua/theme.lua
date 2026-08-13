@@ -3,9 +3,7 @@ local M = {}
 M.colors = {
   bg = "#2e3440",
   fg = "#ECEFF4",
-  red = "#bf616a",
-  orange = "#d08770",
-  yellow = "#ebcb8b",
+  red = "#bf616a", orange = "#d08770", yellow = "#ebcb8b",
   blue = "#5e81ac",
   green = "#a3be8c",
   cyan = "#88c0d0",
@@ -175,7 +173,7 @@ local themes = {
       vim.g.gruvbox_material_show_eob = 0
       vim.g.gruvbox_material_ui_contrast = "high"
       vim.g.gruvbox_material_float_style = "bright"
-      vim.g.gruvbox_material_transparent_background = 2
+      vim.g.gruvbox_material_transparent_background = 0
     end,
   },
 }

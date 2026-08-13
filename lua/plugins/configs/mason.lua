@@ -26,7 +26,10 @@ return {
         },
         automatic_enable = {
           exclude = {
-            "jdtls"
+            "jdtls",
+            -- vue_ls needs to run as a plugin inside ts_ls/vtsls (hybrid mode)
+            -- rather than standalone; not wired up since we only need formatting.
+            "vue_ls",
           }
         }
       })

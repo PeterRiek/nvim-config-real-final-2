@@ -12,46 +12,59 @@ end
 -- MULTIPLE MODES MAPPINGS
 wk.add({
   mode = { "n", "v", "o" },
-  { "H",          "^",                                                 desc = "[MOTION] Move to first character of line" },
-  { "L",          "$",                                                 desc = "[MOTION] Move to last character of line" },
-  { "<leader>nd", "<cmd>Noice dismiss<cr>",                            desc = "[NOICE] Dismiss all messages" },
+  { "H",          "^",                                       desc = "[MOTION] Move to first character of line" },
+  { "L",          "$",                                       desc = "[MOTION] Move to last character of line" },
+  { "<leader>nd", "<cmd>Noice dismiss<cr>",                  desc = "[NOICE] Dismiss all messages" },
 
-  { "<leader>Q",  "<cmd>qa!<cr>",                                      desc = "Force quit all" },
+  { "<leader>Q",  "<cmd>qa!<cr>",                            desc = "Force quit all" },
 
   -- Code Companion & AI assistants
   { "<leader>c",  group = "[Code Companion & AI assistants]" },
-  { "<leader>cc", "<cmd>CodeCompanionChat Toggle<cr>",                 desc = "[COMPANION] Open CodeCompanion Chat" },
-  { "<leader>ci", ":CodeCompanion ",                                   desc = "[COMPANION] Open CodeCompanion Inline" },
-  { "<leader>ca", "<cmd>CodeCompanionActions<cr>",                     desc = "[COMPANION] Open CodeCompanion Actions" },
-  { "<leader>cg", "<cmd>CodeCompanionGenerate<cr>",                    desc = "[COMPANION] Open CodeCompanion Generate" },
-  { "<leader>cs", "<cmd>CodeCompanionSummarize<cr>",                   desc = "[COMPANION] Open CodeCompanion Summarize" },
-  { "<leader>ct", "<cmd>CodeCompanionTest<cr>",                        desc = "[COMPANION] Open CodeCompanion Test" },
-  { "<leader>ce", "<cmd>CodeCompanionExplain<cr>",                     desc = "[COMPANION] Open CodeCompanion Explain" },
-  { "<leader>cd", "<cmd>CodeCompanionDocument<cr>",                    desc = "[COMPANION] Open CodeCompanion Document" },
-  { "<leader>cr", "<cmd>CodeCompanionRefactor<cr>",                    desc = "[COMPANION] Open CodeCompanion Refactor" },
-  { "<leader>cx", "<cmd>Copilot toggle<cr>",                           desc = "[COPILOT] Toggle Copilot" },
-  { "<leader>cX", "<cmd>Copilot disable<cr>",                          desc = "[COPILOT] Disable Copilot" },
-  { "<leader>cC", "<cmd>Copilot enable<cr>",                           desc = "[COPILOT] Enable Copilot" },
+  { "<leader>cc", "<cmd>CodeCompanionChat Toggle<cr>",       desc = "[COMPANION] Open CodeCompanion Chat" },
+  { "<leader>ci", ":CodeCompanion ",                         desc = "[COMPANION] Open CodeCompanion Inline" },
+  { "<leader>ca", "<cmd>CodeCompanionActions<cr>",           desc = "[COMPANION] Open CodeCompanion Actions" },
+  { "<leader>cg", "<cmd>CodeCompanionGenerate<cr>",          desc = "[COMPANION] Open CodeCompanion Generate" },
+  { "<leader>cs", "<cmd>CodeCompanionSummarize<cr>",         desc = "[COMPANION] Open CodeCompanion Summarize" },
+  { "<leader>ct", "<cmd>CodeCompanionTest<cr>",              desc = "[COMPANION] Open CodeCompanion Test" },
+  { "<leader>ce", "<cmd>CodeCompanionExplain<cr>",           desc = "[COMPANION] Open CodeCompanion Explain" },
+  { "<leader>cd", "<cmd>CodeCompanionDocument<cr>",          desc = "[COMPANION] Open CodeCompanion Document" },
+  { "<leader>cr", "<cmd>CodeCompanionRefactor<cr>",          desc = "[COMPANION] Open CodeCompanion Refactor" },
+  { "<leader>cx", "<cmd>Copilot toggle<cr>",                 desc = "[COPILOT] Toggle Copilot" },
+  { "<leader>cX", "<cmd>Copilot disable<cr>",                desc = "[COPILOT] Disable Copilot" },
+  { "<leader>cC", "<cmd>Copilot enable<cr>",                 desc = "[COPILOT] Enable Copilot" },
 
   -- Code Actions
   { "<leader>a",  group = "Actions (LSP)" },
-  { "<leader>aa", vim.lsp.buf.code_action,                             desc = "[LSP] Code actions" },
-  { "<leader>an", vim.lsp.buf.rename,                                  desc = "[LSP] Rename symbol" },
-  { "<leader>ar", vim.lsp.buf.references,                              desc = "[LSP] Jump to references" },
-  { "<leader>ai", vim.lsp.buf.implementation,                          desc = "[LSP] Jump to implementation" },
-  { "<leader>at", vim.lsp.buf.type_definition,                         desc = "[LSP] Jump to type definition" },
-  { "<leader>af", function() vim.lsp.buf.format({ async = true }) end, desc = "[LSP] Format file" },
+  { "<leader>aa", vim.lsp.buf.code_action,                   desc = "[LSP] Code actions" },
+  { "<leader>an", vim.lsp.buf.rename,                        desc = "[LSP] Rename symbol" },
+  { "<leader>ar", vim.lsp.buf.references,                    desc = "[LSP] Jump to references" },
+  { "<leader>ai", vim.lsp.buf.implementation,                desc = "[LSP] Jump to implementation" },
+  { "<leader>at", vim.lsp.buf.type_definition,               desc = "[LSP] Jump to type definition" },
+  {
+    "<leader>af",
+    function()
+      require("conform").format({ async = true, lsp_fallback = true }, function(err)
+        if not err then
+          local mode = vim.api.nvim_get_mode().mode
+          if vim.startswith(string.lower(mode), "v") then
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
+          end
+        end
+      end)
+    end,
+    desc = "[LSP] Format file/selection"
+  },
 
   -- Git
   -- { "<leader>g",  group = "Git" },
-  { "<leader>gs", "<cmd>Gitsigns stage_hunk<cr>",                      desc = "[GIT] Stage hunk" },
-  { "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>",                      desc = "[GIT] Reset hunk" },
-  { "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>",                    desc = "[GIT] Preview hunk" },
-  { "<leader>gb", "<cmd>Gitsigns blame_line<cr>",                      desc = "[GIT] Blame line" },
-  { "<leader>gd", "<cmd>Gitsigns diffthis<cr>",                        desc = "[GIT] Diff this" },
-  { "<leader>gD", "<cmd>Gitsigns diffthis HEAD<cr>",                   desc = "[GIT] Diff this against HEAD" },
-  { "<leader>gS", "<cmd>Gitsigns toggle_signs<cr>",                    desc = "[GIT] Toggle signs" },
-  { "<leader>gB", "<cmd>Gitsigns toggle_current_line_blame<cr>",       desc = "[GIT] Toggle current line blame" },
+  { "<leader>gs", "<cmd>Gitsigns stage_hunk<cr>",                desc = "[GIT] Stage hunk" },
+  { "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>",                desc = "[GIT] Reset hunk" },
+  { "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>",              desc = "[GIT] Preview hunk" },
+  { "<leader>gb", "<cmd>Gitsigns blame_line<cr>",                desc = "[GIT] Blame line" },
+  { "<leader>gd", "<cmd>Gitsigns diffthis<cr>",                  desc = "[GIT] Diff this" },
+  { "<leader>gD", "<cmd>Gitsigns diffthis HEAD<cr>",             desc = "[GIT] Diff this against HEAD" },
+  { "<leader>gS", "<cmd>Gitsigns toggle_signs<cr>",              desc = "[GIT] Toggle signs" },
+  { "<leader>gB", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "[GIT] Toggle current line blame" },
 })
 
 -- NORMAL mode mappings --

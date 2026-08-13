@@ -57,6 +57,7 @@ local plugins = {
   "neovim/nvim-lspconfig",          -- collection of lsp server configs
   require("plugins.configs.mason"), -- Package manager for LSP/DAP
   require("lsp.configs.java"),      -- Java language support
+  require("plugins.configs.conform"), -- standalone formatters (prettier, etc.)
 
 
   -- Snippets
