@@ -86,6 +86,7 @@ wk.add({
   { "<leader>sv", "<cmd>vsplit<cr>",                                                                            desc = "[SPLIT] Vertical split" },
   { "<leader>sm", "<cmd>MaximizerToggle<CR>",                                                                   desc = "Maximize/minimize current split" },
   { "<leader>sx", "<cmd>close<cr>",                                                                             desc = "[SPLIT] Close current split" },
+  { "<leader>st", "<cmd>split | terminal<cr> | i",                                                                  desc = "[SPLIT] Horizontal split with terminal" },
   -- Resize splits
   { "<a-c-h>",    "<cmd>vertical resize -2<cr>",                                                                desc = "[SPLIT] Resize left" },
   { "<a-c-j>",    "<cmd>resize -2<cr>",                                                                         desc = "[SPLIT] Resize down" },
@@ -106,6 +107,7 @@ wk.add({
   { "<leader>bx", function() require("snacks").bufdelete() end,                                                 desc = "[BUFFER] Close current buffer" },
   { "<leader>bX", "<cmd>%bd!|e#|bd#<cr>",                                                                       desc = "[BUFFER] Close all other buffers" },
   { "<leader>by", "<cmd>%y+<cr>",                                                                               desc = "[BUFFER] Yank whole buffer to clipboard" },
+  { "<leader>bP", function() vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(vim.fn.getreg("+"), "\n")) end, desc = "[BUFFER] Replace whole buffer with clipboard content" },
 
   -- Errors and diagnostics
   { "<leader>e",  group = "[Errors and diagnostics]" },
