@@ -9,6 +9,9 @@ if not ok then
   return
 end
 
+local gitsigns_config = require("plugins.configs.gitsigns")
+local terminal = require("terminal")
+
 -- MULTIPLE MODES MAPPINGS
 wk.add({
   mode = { "n", "v", "o" },
@@ -61,10 +64,20 @@ wk.add({
   { "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>",                desc = "[GIT] Reset hunk" },
   { "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>",              desc = "[GIT] Preview hunk" },
   { "<leader>gb", "<cmd>Gitsigns blame_line<cr>",                desc = "[GIT] Blame line" },
-  { "<leader>gd", "<cmd>Gitsigns diffthis<cr>",                  desc = "[GIT] Diff this" },
+  { "<leader>gd", gitsigns_config.toggle_diffthis,               desc = "[GIT] Toggle diff this" },
   { "<leader>gD", "<cmd>Gitsigns diffthis HEAD<cr>",             desc = "[GIT] Diff this against HEAD" },
   { "<leader>gS", "<cmd>Gitsigns toggle_signs<cr>",              desc = "[GIT] Toggle signs" },
   { "<leader>gB", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "[GIT] Toggle current line blame" },
+
+  -- Git conflict resolution
+  { "<leader>gc",  group = "[Conflict]" },
+  { "<leader>gco", "<cmd>GitConflictChooseOurs<cr>",             desc = "[CONFLICT] Choose ours" },
+  { "<leader>gct", "<cmd>GitConflictChooseTheirs<cr>",           desc = "[CONFLICT] Choose theirs" },
+  { "<leader>gcb", "<cmd>GitConflictChooseBoth<cr>",             desc = "[CONFLICT] Choose both" },
+  { "<leader>gcx", "<cmd>GitConflictChooseNone<cr>",             desc = "[CONFLICT] Choose none" },
+  { "<leader>gcn", "<cmd>GitConflictNextConflict<cr>",           desc = "[CONFLICT] Next conflict" },
+  { "<leader>gcp", "<cmd>GitConflictPrevConflict<cr>",           desc = "[CONFLICT] Previous conflict" },
+  { "<leader>gcq", "<cmd>GitConflictListQf<cr>",                 desc = "[CONFLICT] List conflicts in quickfix" },
 })
 
 -- NORMAL mode mappings --
@@ -86,7 +99,7 @@ wk.add({
   { "<leader>sv", "<cmd>vsplit<cr>",                                                                            desc = "[SPLIT] Vertical split" },
   { "<leader>sm", "<cmd>MaximizerToggle<CR>",                                                                   desc = "Maximize/minimize current split" },
   { "<leader>sx", "<cmd>close<cr>",                                                                             desc = "[SPLIT] Close current split" },
-  { "<leader>st", "<cmd>split | terminal<cr> | i",                                                                  desc = "[SPLIT] Horizontal split with terminal" },
+  { "<leader>st", terminal.toggle_split,                                                                         desc = "[SPLIT] Toggle terminal split" },
   -- Resize splits
   { "<a-c-h>",    "<cmd>vertical resize -2<cr>",                                                                desc = "[SPLIT] Resize left" },
   { "<a-c-j>",    "<cmd>resize -2<cr>",                                                                         desc = "[SPLIT] Resize down" },
@@ -96,6 +109,7 @@ wk.add({
   -- Views
   { "<leader>v",  group = "Views" },
   { "<leader>vf", "<cmd>Neotree toggle<cr>",                                                                    desc = "[NEOTREE] Toggle file tree view" },
+  { "<leader>vr", "<cmd>Neotree reveal<cr>",                                                                    desc = "[NEOTREE] Reveal current file in tree" },
 
   -- Buffers
   { "<leader>b",  group = "Buffers" },

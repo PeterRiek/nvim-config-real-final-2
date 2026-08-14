@@ -50,7 +50,8 @@ local plugins = {
   require("plugins.configs.maximizer"), -- Toggle split max/min
   require("plugins.configs.autopairs"), -- autoclose brackets, parentheses...
   require("plugins.configs.remote"),    -- Remote development support
-  require("plugins.configs.gitsigns"),  -- git integration
+  require("plugins.configs.gitsigns").spec,  -- git integration
+  require("plugins.configs.git-conflict"), -- merge conflict resolution
 
 
   -- LSP/DAP
