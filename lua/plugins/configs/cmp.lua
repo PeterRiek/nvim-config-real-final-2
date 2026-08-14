@@ -29,6 +29,8 @@ return {
     -- This links the ghost text color to your theme's default comment color (typically dark gray/faded)
     vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
 
+    vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+
     -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
     -- require("luasnip.loaders.from_vscode").lazy_load()
 
@@ -66,14 +68,25 @@ return {
       -- configure lspkind for vs-code like pictograms in completion menu
       formatting = {
         fields = { "icon", "abbr", "menu" },
-        format = lspkind.cmp_format({
-          mode = "symbol",
-          maxwidth = 50,
-          ellipsis_char = "...",
-          show_labelDetails = true, -- show labelDetails in menu. Disabled by default
-          -- Integrates custom icon for Copilot inside lspkind
-          symbol_map = { Copilot = "" }
-        }),
+        format = function(entry, vim_item)
+          local formatted = lspkind.cmp_format({
+            mode = "symbol",
+            maxwidth = 50,
+            ellipsis_char = "...",
+            show_labelDetails = true, -- show labelDetails in menu. Disabled by default
+            -- Integrates custom icon for Copilot inside lspkind
+            symbol_map = { Copilot = "" },
+          })(entry, vim_item)
+
+          -- Copilot items report LSP kind "Text", so lspkind's symbol_map
+          -- lookup for "Copilot" never gets hit. Override the icon directly.
+          if entry.source.name == "copilot" then
+            formatted.icon = lspkind.symbol_map.Copilot
+            formatted.icon_hl_group = "CmpItemKindCopilot"
+          end
+
+          return formatted
+        end,
       },
       -- limit to max 20 entries
       performance = {

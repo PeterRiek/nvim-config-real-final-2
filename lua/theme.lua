@@ -108,6 +108,15 @@ local themes = {
     "olimorris/onedarkpro.nvim",
     config = function()
       vim.o.background = "dark"
+      require("onedarkpro").setup({
+        options = {
+          -- onedarkpro defaults this to false, but i want it in
+          cursorline = true,
+        },
+        highlights = {
+          NeoTreeGitUntracked = { fg = "${cyan}" },
+        },
+      })
       require("onedarkpro").load()
     end,
   },
