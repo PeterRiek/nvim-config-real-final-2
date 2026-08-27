@@ -76,8 +76,13 @@ return {
       }),
       -- customize the window the suggestions appear in
       window = {
-        completion = cmp.config.window.bordered({ max_height = 10 }), -- show 10 at a time, scroll through the rest
-        documentation = cmp.config.window.bordered(),
+        completion = cmp.config.window.bordered({
+          max_height = 10, -- show 10 at a time, scroll through the rest
+          winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+        }),
+        documentation = cmp.config.window.bordered({
+          winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+        }),
       },
       -- configure lspkind for vs-code like pictograms in completion menu
       formatting = {

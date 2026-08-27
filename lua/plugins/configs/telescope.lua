@@ -13,6 +13,11 @@ return {
             ["<C-j>"] = actions.move_selection_next,
           },
         }
+      },
+      pickers = {
+        find_files = {
+          find_command = { 'fd', '--type', 'f', '--hidden', '--exclude', '.git' }
+        }
       }
     })
   end

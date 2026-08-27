@@ -24,6 +24,8 @@ local options = {
 
   splitright = true,
   splitbelow = true,
+
+  winborder = "rounded",                              -- default border style for floating windows (nvim-cmp, LSP floats, etc.)
 }
 
 -- temporary disable deprecation warnings
@@ -34,4 +36,4 @@ for key, value in pairs(options) do
 end
 
 -- UI theme
-require("theme").set_active_theme("gruvbox")
+require("theme").set_active_theme("onedarkpro")
