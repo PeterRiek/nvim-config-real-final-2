@@ -27,6 +27,7 @@ if not ok then
 end
 
 local theme = require("theme")
+local enable_ai = os.getenv("NVIM_AI")
 
 local plugins = {
   -- UI
@@ -47,17 +48,18 @@ local plugins = {
 
 
   -- Utilities
-  require("plugins.configs.maximizer"), -- Toggle split max/min
-  require("plugins.configs.autopairs"), -- autoclose brackets, parentheses...
-  require("plugins.configs.remote"),    -- Remote development support
-  require("plugins.configs.gitsigns").spec,  -- git integration
-  require("plugins.configs.git-conflict"), -- merge conflict resolution
+  require("plugins.configs.maximizer"),     -- Toggle split max/min
+  require("plugins.configs.autopairs"),     -- autoclose brackets, parentheses...
+  require("plugins.configs.remote"),        -- Remote development support
+  require("plugins.configs.gitsigns").spec, -- git integration
+  require("plugins.configs.git-conflict"),  -- merge conflict resolution
+  require("plugins.configs.todo-comments"), -- highlight and search TODO/FIXME/etc comments
 
 
   -- LSP/DAP
-  "neovim/nvim-lspconfig",          -- collection of lsp server configs
-  require("plugins.configs.mason"), -- Package manager for LSP/DAP
-  require("lsp.configs.java"),      -- Java language support
+  "neovim/nvim-lspconfig",            -- collection of lsp server configs
+  require("plugins.configs.mason"),   -- Package manager for LSP/DAP
+  require("lsp.configs.java"),        -- Java language support
   require("plugins.configs.conform"), -- standalone formatters (prettier, etc.)
 
 
@@ -69,11 +71,13 @@ local plugins = {
   require("plugins.configs.tmux"), -- moving tmux panes <-> nvim splits
 
   -- AI & vibecode
-  require("plugins.configs.codecompanion"), -- ai chat companion
-  require("plugins.configs.copilot"),       -- ms copilot integration
-
-  -- Fun
-  'ThePrimeagen/vim-be-good',
+  (function()
+    if enable_ai then
+      return
+          require("plugins.configs.codecompanion"), -- ai chat companion
+          require("plugins.configs.copilot")        -- ms copilot integration
+    end
+  end)()
 }
 
 lazy.setup(plugins)

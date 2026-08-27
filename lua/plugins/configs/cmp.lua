@@ -25,6 +25,20 @@ return {
     -- Ensure copilot-cmp initializes its internal handlers properly
     require("copilot_cmp").setup()
 
+    -- Some LSPs (e.g. jdtls) send snippet bodies with raw `$` characters
+    -- (Java inner classes are named like `Map$Entry`) that cmp's snippet
+    -- parser can't handle, crashing the ghost text decoration provider.
+    -- Guard the parse so a bad snippet just skips ghost text instead of erroring.
+    local ghost_text_view = require("cmp.view.ghost_text_view")
+    local text_gen = ghost_text_view.text_gen
+    ghost_text_view.text_gen = function(self, line, cursor_col)
+      local ok, result = pcall(text_gen, self, line, cursor_col)
+      if ok then
+        return result
+      end
+      return ""
+    end
+
     -- Set up the explicit visual styling for the ghost text overlay
     -- This links the ghost text color to your theme's default comment color (typically dark gray/faded)
     vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
@@ -62,7 +76,7 @@ return {
       }),
       -- customize the window the suggestions appear in
       window = {
-        completion = cmp.config.window.bordered(),
+        completion = cmp.config.window.bordered({ max_height = 10 }), -- show 10 at a time, scroll through the rest
         documentation = cmp.config.window.bordered(),
       },
       -- configure lspkind for vs-code like pictograms in completion menu
@@ -88,9 +102,8 @@ return {
           return formatted
         end,
       },
-      -- limit to max 20 entries
       performance = {
-        max_view_entries = 20,
+        -- max_view_entries = 20, -- limit this for better performance
       },
       -- CHANGED: Added experimental ghost text parameters
       experimental = {

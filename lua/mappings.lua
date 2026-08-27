@@ -15,6 +15,7 @@ local terminal = require("terminal")
 -- MULTIPLE MODES MAPPINGS
 wk.add({
   mode = { "n", "v", "o" },
+  { "Ö",          ":" },
   { "H",          "^",                                       desc = "[MOTION] Move to first character of line" },
   { "L",          "$",                                       desc = "[MOTION] Move to last character of line" },
   { "<leader>nd", "<cmd>Noice dismiss<cr>",                  desc = "[NOICE] Dismiss all messages" },
@@ -60,76 +61,77 @@ wk.add({
 
   -- Git
   -- { "<leader>g",  group = "Git" },
-  { "<leader>gs", "<cmd>Gitsigns stage_hunk<cr>",                desc = "[GIT] Stage hunk" },
-  { "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>",                desc = "[GIT] Reset hunk" },
-  { "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>",              desc = "[GIT] Preview hunk" },
-  { "<leader>gb", "<cmd>Gitsigns blame_line<cr>",                desc = "[GIT] Blame line" },
-  { "<leader>gd", gitsigns_config.toggle_diffthis,               desc = "[GIT] Toggle diff this" },
-  { "<leader>gD", "<cmd>Gitsigns diffthis HEAD<cr>",             desc = "[GIT] Diff this against HEAD" },
-  { "<leader>gS", "<cmd>Gitsigns toggle_signs<cr>",              desc = "[GIT] Toggle signs" },
-  { "<leader>gB", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "[GIT] Toggle current line blame" },
+  { "<leader>gs",  "<cmd>Gitsigns stage_hunk<cr>",                desc = "[GIT] Stage hunk" },
+  { "<leader>gr",  "<cmd>Gitsigns reset_hunk<cr>",                desc = "[GIT] Reset hunk" },
+  { "<leader>gp",  "<cmd>Gitsigns preview_hunk<cr>",              desc = "[GIT] Preview hunk" },
+  { "<leader>gb",  "<cmd>Gitsigns blame_line<cr>",                desc = "[GIT] Blame line" },
+  { "<leader>gd",  gitsigns_config.toggle_diffthis,               desc = "[GIT] Toggle diff this" },
+  { "<leader>gD",  "<cmd>Gitsigns diffthis HEAD<cr>",             desc = "[GIT] Diff this against HEAD" },
+  { "<leader>gS",  "<cmd>Gitsigns toggle_signs<cr>",              desc = "[GIT] Toggle signs" },
+  { "<leader>gB",  "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "[GIT] Toggle current line blame" },
 
   -- Git conflict resolution
   { "<leader>gc",  group = "[Conflict]" },
-  { "<leader>gco", "<cmd>GitConflictChooseOurs<cr>",             desc = "[CONFLICT] Choose ours" },
-  { "<leader>gct", "<cmd>GitConflictChooseTheirs<cr>",           desc = "[CONFLICT] Choose theirs" },
-  { "<leader>gcb", "<cmd>GitConflictChooseBoth<cr>",             desc = "[CONFLICT] Choose both" },
-  { "<leader>gcx", "<cmd>GitConflictChooseNone<cr>",             desc = "[CONFLICT] Choose none" },
-  { "<leader>gcn", "<cmd>GitConflictNextConflict<cr>",           desc = "[CONFLICT] Next conflict" },
-  { "<leader>gcp", "<cmd>GitConflictPrevConflict<cr>",           desc = "[CONFLICT] Previous conflict" },
-  { "<leader>gcq", "<cmd>GitConflictListQf<cr>",                 desc = "[CONFLICT] List conflicts in quickfix" },
+  { "<leader>gco", "<cmd>GitConflictChooseOurs<cr>",              desc = "[CONFLICT] Choose ours" },
+  { "<leader>gct", "<cmd>GitConflictChooseTheirs<cr>",            desc = "[CONFLICT] Choose theirs" },
+  { "<leader>gcb", "<cmd>GitConflictChooseBoth<cr>",              desc = "[CONFLICT] Choose both" },
+  { "<leader>gcx", "<cmd>GitConflictChooseNone<cr>",              desc = "[CONFLICT] Choose none" },
+  { "<leader>gcn", "<cmd>GitConflictNextConflict<cr>",            desc = "[CONFLICT] Next conflict" },
+  { "<leader>gcp", "<cmd>GitConflictPrevConflict<cr>",            desc = "[CONFLICT] Previous conflict" },
+  { "<leader>gcq", "<cmd>GitConflictListQf<cr>",                  desc = "[CONFLICT] List conflicts in quickfix" },
 })
 
 -- NORMAL mode mappings --
 wk.add({
   mode = { "n" },
   -- Edition
-  { "c",          '"_c',                                                                                        desc = "Do not copy when changing" },
-  { "C",          '"_C',                                                                                        desc = "Do not copy when changing" },
+  { "c",          '"_c',                                                                                           desc = "Do not copy when changing" },
+  { "C",          '"_C',                                                                                           desc = "Do not copy when changing" },
 
   -- Find
   { "<leader>f",  group = "Find" },
-  { "<leader>ff", "<cmd>Telescope find_files<cr>",                                                              desc = "[TELESCOPE] Find File" },
-  { "<leader>fg", "<cmd>Telescope live_grep<cr>",                                                               desc = "[TELESCOPE] Find File by live grep (search content)" },
-  { "<leader>fb", "<cmd>Telescope buffers<cr>",                                                                 desc = "[TELESCOPE] Find buffers" },
+  { "<leader>ff", "<cmd>Telescope find_files<cr>",                                                                 desc = "[TELESCOPE] Find File" },
+  { "<leader>fg", "<cmd>Telescope live_grep<cr>",                                                                  desc = "[TELESCOPE] Find File by live grep (search content)" },
+  { "<leader>fb", "<cmd>Telescope buffers<cr>",                                                                    desc = "[TELESCOPE] Find buffers" },
+  { "<leader>ft", "<cmd>TodoTelescope<cr>",                                                                        desc = "[TELESCOPE] Find TODOs" },
 
   -- Splits
   { "<leader>s",  group = "Splits" },
-  { "<leader>sh", "<cmd>split<cr>",                                                                             desc = "[SPLIT] Horizontal split" },
-  { "<leader>sv", "<cmd>vsplit<cr>",                                                                            desc = "[SPLIT] Vertical split" },
-  { "<leader>sm", "<cmd>MaximizerToggle<CR>",                                                                   desc = "Maximize/minimize current split" },
-  { "<leader>sx", "<cmd>close<cr>",                                                                             desc = "[SPLIT] Close current split" },
-  { "<leader>st", terminal.toggle_split,                                                                         desc = "[SPLIT] Toggle terminal split" },
+  { "<leader>sh", "<cmd>split<cr>",                                                                                desc = "[SPLIT] Horizontal split" },
+  { "<leader>sv", "<cmd>vsplit<cr>",                                                                               desc = "[SPLIT] Vertical split" },
+  { "<leader>sm", "<cmd>MaximizerToggle<CR>",                                                                      desc = "Maximize/minimize current split" },
+  { "<leader>sx", "<cmd>close<cr>",                                                                                desc = "[SPLIT] Close current split" },
+  { "<leader>st", terminal.toggle_split,                                                                           desc = "[SPLIT] Toggle terminal split" },
   -- Resize splits
-  { "<a-c-h>",    "<cmd>vertical resize -2<cr>",                                                                desc = "[SPLIT] Resize left" },
-  { "<a-c-j>",    "<cmd>resize -2<cr>",                                                                         desc = "[SPLIT] Resize down" },
-  { "<a-c-k>",    "<cmd>resize +2<cr>",                                                                         desc = "[SPLIT] Resize up" },
-  { "<a-c-l>",    "<cmd>vertical resize +2<cr>",                                                                desc = "[SPLIT] Resize right" },
+  { "<a-c-h>",    "<cmd>vertical resize -2<cr>",                                                                   desc = "[SPLIT] Resize left" },
+  { "<a-c-j>",    "<cmd>resize -2<cr>",                                                                            desc = "[SPLIT] Resize down" },
+  { "<a-c-k>",    "<cmd>resize +2<cr>",                                                                            desc = "[SPLIT] Resize up" },
+  { "<a-c-l>",    "<cmd>vertical resize +2<cr>",                                                                   desc = "[SPLIT] Resize right" },
 
   -- Views
   { "<leader>v",  group = "Views" },
-  { "<leader>vf", "<cmd>Neotree toggle<cr>",                                                                    desc = "[NEOTREE] Toggle file tree view" },
-  { "<leader>vr", "<cmd>Neotree reveal<cr>",                                                                    desc = "[NEOTREE] Reveal current file in tree" },
+  { "<leader>vf", "<cmd>Neotree toggle<cr>",                                                                       desc = "[NEOTREE] Toggle file tree view" },
+  { "<leader>vr", "<cmd>Neotree reveal<cr>",                                                                       desc = "[NEOTREE] Reveal current file in tree" },
 
   -- Buffers
   { "<leader>b",  group = "Buffers" },
-  { "<leader>bn", "<cmd>bn<cr>",                                                                                desc = "[BUFFER] Go next buffer" },
-  { "<a-L>",      "<cmd>bn<cr>",                                                                                desc = "[BUFFER] Go next buffer" },
-  { "<leader>bp", "<cmd>bp<cr>",                                                                                desc = "[BUFFER] Go previous buffer" },
-  { "<a-H>",      "<cmd>bp<cr>",                                                                                desc = "[BUFFER] Go previous buffer" },
-  { "<leader>bt", "<cmd>ene<cr>",                                                                               desc = "[BUFFER] Open a new empty buffer" },
-  { "<leader>bx", function() require("snacks").bufdelete() end,                                                 desc = "[BUFFER] Close current buffer" },
-  { "<leader>bX", "<cmd>%bd!|e#|bd#<cr>",                                                                       desc = "[BUFFER] Close all other buffers" },
-  { "<leader>by", "<cmd>%y+<cr>",                                                                               desc = "[BUFFER] Yank whole buffer to clipboard" },
+  { "<leader>bn", "<cmd>bn<cr>",                                                                                   desc = "[BUFFER] Go next buffer" },
+  { "<a-L>",      "<cmd>bn<cr>",                                                                                   desc = "[BUFFER] Go next buffer" },
+  { "<leader>bp", "<cmd>bp<cr>",                                                                                   desc = "[BUFFER] Go previous buffer" },
+  { "<a-H>",      "<cmd>bp<cr>",                                                                                   desc = "[BUFFER] Go previous buffer" },
+  { "<leader>bt", "<cmd>ene<cr>",                                                                                  desc = "[BUFFER] Open a new empty buffer" },
+  { "<leader>bx", function() require("snacks").bufdelete() end,                                                    desc = "[BUFFER] Close current buffer" },
+  { "<leader>bX", "<cmd>%bd!|e#|bd#<cr>",                                                                          desc = "[BUFFER] Close all other buffers" },
+  { "<leader>by", "<cmd>%y+<cr>",                                                                                  desc = "[BUFFER] Yank whole buffer to clipboard" },
   { "<leader>bP", function() vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(vim.fn.getreg("+"), "\n")) end, desc = "[BUFFER] Replace whole buffer with clipboard content" },
 
   -- Errors and diagnostics
   { "<leader>e",  group = "[Errors and diagnostics]" },
-  { "<leader>ee", function() vim.diagnostic.open_float() end,                                                   desc = "[DIAG] Show error in line" },
-  { "<leader>en", function() vim.diagnostic.jump({ count = 1 }) end,                                            desc = "[diag] go to next diagnostic" },
-  { "<leader>ep", function() vim.diagnostic.jump({ count = -1 }) end,                                           desc = "[diag] go to previous diagnostic" },
-  { "<leader>eN", function() vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR }) end,  desc = "[DIAG] Go to next error" },
-  { "<leader>eP", function() vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR }) end, desc = "[DIAG] Go to previous error" },
+  { "<leader>ee", function() vim.diagnostic.open_float() end,                                                      desc = "[DIAG] Show error in line" },
+  { "<leader>en", function() vim.diagnostic.jump({ count = 1 }) end,                                               desc = "[diag] go to next diagnostic" },
+  { "<leader>ep", function() vim.diagnostic.jump({ count = -1 }) end,                                              desc = "[diag] go to previous diagnostic" },
+  { "<leader>eN", function() vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR }) end,     desc = "[DIAG] Go to next error" },
+  { "<leader>eP", function() vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR }) end,    desc = "[DIAG] Go to previous error" },
 })
 
 -- INSERT mode mappings --
