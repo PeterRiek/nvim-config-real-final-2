@@ -12,6 +12,34 @@ end
 local gitsigns_config = require("plugins.configs.gitsigns")
 local terminal = require("terminal")
 
+-- Closes any open floating window (LSP hover/signature doc, etc.)
+-- Returns true if something was closed, so callers can fall back to opening one.
+local function close_lsp_float()
+  local closed = false
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local ok, cfg = pcall(vim.api.nvim_win_get_config, win)
+    if ok and cfg.relative ~= "" then
+      vim.api.nvim_win_close(win, false)
+      closed = true
+    end
+  end
+  return closed
+end
+
+-- Closes an open hover/signature float if there is one, otherwise opens the
+-- appropriate one for the current mode (signature help while inserting,
+-- hover otherwise).
+local function toggle_lsp_doc()
+  if close_lsp_float() then
+    return
+  end
+  if vim.startswith(vim.api.nvim_get_mode().mode, "i") then
+    vim.lsp.buf.signature_help()
+  else
+    vim.lsp.buf.hover()
+  end
+end
+
 -- MULTIPLE MODES MAPPINGS
 wk.add({
   mode = { "n", "v", "o" },
@@ -40,6 +68,8 @@ wk.add({
   -- Code Actions
   { "<leader>a",  group = "Actions (LSP)" },
   { "<leader>aa", vim.lsp.buf.code_action,                   desc = "[LSP] Code actions" },
+  { "<leader>ah", toggle_lsp_doc,                            desc = "[LSP] Toggle hover doc" },
+  { "<c-s>",      toggle_lsp_doc,                            desc = "[LSP] Toggle hover/signature doc" },
   { "<leader>an", vim.lsp.buf.rename,                        desc = "[LSP] Rename symbol" },
   { "<leader>ar", vim.lsp.buf.references,                    desc = "[LSP] Jump to references" },
   { "<leader>ai", vim.lsp.buf.implementation,                desc = "[LSP] Jump to implementation" },
@@ -138,6 +168,7 @@ wk.add({
 wk.add({
   mode = { "i" },
   { "jk",    "<ESC>",               desc = "Normal mode switch" },
+  { "<c-s>", toggle_lsp_doc,        desc = "[LSP] Toggle hover/signature doc" },
   { "<a-b>", "<C-o>b",              desc = "Move to previous word" },
   { "<a-c>", '<C-o>"_ciw',          desc = "Change word" },
   { "<a-d>", '<C-o>"_diw',          desc = "Delete word" },

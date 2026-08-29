@@ -42,6 +42,7 @@ local plugins = {
   require("plugins.configs.neoscroll"),       -- better scrolling
   require("plugins.configs.noice"),           -- popups and commandline centered popup
   require("plugins.configs.indentblankline"), -- Indent blankline for visual indentation guides
+  { 'MeanderingProgrammer/render-markdown.nvim', ft = { 'markdown', 'codecompanion' } }, -- markdown rendering
   -- require("plugins.configs.iron"),					-- Interactive Repls
   "stevearc/dressing.nvim",                   -- cleaner popup interaction
   "folke/snacks.nvim",                        -- better popup interaction

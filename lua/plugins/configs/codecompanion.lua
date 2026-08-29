@@ -6,7 +6,6 @@ return {
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
     'j-hui/fidget.nvim',
-    { 'MeanderingProgrammer/render-markdown.nvim', ft = { 'markdown', 'codecompanion' } },
   },
   config = function()
     local status, secrets = pcall(require, 'secrets')
